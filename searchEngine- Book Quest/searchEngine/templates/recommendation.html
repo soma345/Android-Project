@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Recommended Book List</title>
+  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+      <link rel="stylesheet" href="./style.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+      <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  
+  
+  </head>
+
+<body>
+
+    <div class="table-users">
+     <div class="header">Recommended Books</div>
+  
+     <table border="2" cellspacing="2">
+        <tr>
+           <th>Book Title</th>
+           <th>Author</th>
+           <th>Genre</th>
+           <th>View Plot</th>
+           
+        </tr>
+           {% for review in reviews %}
+        <tr>
+           <td>{{review['BookTitle']}}</td>
+           <td>{{review['BookAuthor']}}</td>
+           <td>{{review['Genre']}}</td>
+           <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myOutput{{ review['DocId'] }}">Plot</button></td>               
+        </tr> 
+        <div class="modal fade" id="myOutput{{ review['DocId'] }}" role="dialog">
+           <div class="modal-dialog modal-lg">
+        
+             <!-- Modal content-->
+             <div class="modal-content">
+               <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4 class="modal-title">{{review['BookTitle']}}</h4>
+               </div>
+               <div class="modal-body">
+                 <p>{{review['Plot']}}</p>
+               </div>
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+             </div>
+        
+           </div>
+           </div> 
+         {% endfor %}      
+     </table>
+     <br/> &nbsp <br/>
+     
+     <div id="Rbutton-Reco">
+        <form action="/home" method="POST">
+           <input type="submit" value="Home" style="text-align: center">
+        </form>
+     </div> 
+      
+  </div>
+  </body>
+  </html>

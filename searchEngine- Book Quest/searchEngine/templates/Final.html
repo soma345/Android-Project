@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Book Search Results</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="table-users">
+   <div class="header">Book Search Result</div>
+   <form action="/bookdetails" method="POST">
+      <table border="2" cellspacing="2">
+         
+            <tr>
+               <th>Book Title</th>
+               <th>Author</th>
+               <th>Genre</th>
+               <th>User Relevancy</th>
+               
+            </tr>
+               
+               {% for review in reviews %}
+               
+            <tr>
+               <td><a href='#' id="btnShow">{{review['BookTitle']}}</a>       
+               </td>
+               <td>{{review['BookAuthor']}}</td>
+               <td>{{review['Genre']}}</td>
+               <td class="checkbox">
+                  <input type="checkbox" name="relevence"  value="{{review['DocId']}}" />
+                  <lable>yes</lable>
+               </td> 
+               <td></td>               
+            </tr>
+            
+         
+         {% endfor %}      
+      </table>
+   <div class="button-back-submit">
+     <input  class type="submit" value="Search"><br/> &nbsp <br/>
+   <div>
+   </form>
+   <div>
+     <form action="/home" method="POST">
+      <input type="submit" value= "Home" style="text-align: center"><br/> &nbsp <br/>
+    </form>
+  </div>
+   
+
+</div> 
+</body>
+
+</html>

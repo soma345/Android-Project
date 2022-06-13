@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Book Search Results</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+      <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#btnShow").click(function () {
+
+                $('#SampleModal').modal('show');
+
+            });
+
+        });
+
+    </script>
+
+
+</head>
+
+<body>
+
+  <div class="table-users">
+   <div class="header">Book Search Result</div>
+   <form action="/bookdetails" method="POST">
+      <table border="2" cellspacing="2">
+         
+            <tr>
+               <th>Book Title</th>
+               <th>Author</th>
+               <th>Genre</th>
+               <th>User Relevancy</th>
+               
+            </tr>
+               
+               {% for review in reviews %}
+               
+            <tr>
+               <td><a href="" name="bookTitle" value="{{review['DocId']}}">{{review['BookTitle']}}</a></td>
+               <td>{{review['BookAuthor']}}</td>
+               <td>{{review['Genre']}}</td>
+               <td class="checkbox">
+                  <input type="checkbox" name="relevence"  value="{{review['DocId']}}" />
+                  <lable>yes</lable>
+               </td>             
+            </tr>
+         
+         {% endfor %}      
+      </table>
+   <input class="button-search" type="submit" value="Search"><br/> &nbsp <br/>
+</form>
+</div>
+</body>
+
+</html>
